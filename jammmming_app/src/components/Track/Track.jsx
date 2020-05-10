@@ -1,21 +1,25 @@
 import React from 'react'
 import './Track.css'
 
-function Track() {
-  const renderAction = () => {
+class Track extends React.Component {
+  renderAction() {
+      if (this.props.isRemoval) {
+        return <button className="Track-action">-</button>} else {
+        return <button className="Track-action">+</button>
+        } 
+  }
+
+  render() {
     return (
-      isRemoval ? <button>-</button> : <button>+</button>
+      <div className="Track">
+        <div className="Track-information">
+          <h3>{this.props.track.name}</h3>
+          <p>{this.props.track.artist} | {this.props.track.album}</p>
+        </div>
+        {this.renderAction}
+      </div>
     )
   }
-  return (
-    <div className="Track">
-      <div className="Track-information">
-        <h3>{this.props.track.name}</h3>
-  <p>{this.props.track.artis} | {this.props.track.album}</p>
-      </div>
-      <button className="Track-action">{renderAction()}</button>
-    </div>
-  )
 }
 
 export default Track;
